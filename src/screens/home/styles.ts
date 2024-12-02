@@ -10,6 +10,8 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: THEME.PRIMARY,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   innerContainer: {
     paddingHorizontal: wp(3),
@@ -18,5 +20,12 @@ export const styles = StyleSheet.create({
     fontSize: RFPercentage(2.3),
     color: THEME.WHITE,
     fontFamily: 'Poppins-Bold',
+  },
+
+  hardButton: {
+    backgroundColor: 'green', // Green color for Hard button
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
   },
 });
