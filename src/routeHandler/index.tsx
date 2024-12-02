@@ -16,6 +16,7 @@ const RouteHandler = () => {
           headerShown: false,
         }}>
         <Stack.Screen name={SCREEN.SPLASH} component={Splash} />
+
         <Stack.Screen name={SCREEN.HOME} component={Home} />
         <Stack.Screen name={SCREEN.GAME} component={Game} />
       </Stack.Navigator>
