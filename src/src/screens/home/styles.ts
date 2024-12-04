@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
   },
 
   hardButton: {
-    backgroundColor: 'green',
+    backgroundColor: 'green', // Green color for Hard button
     borderRadius: 8,
     paddingVertical: 10,
     paddingHorizontal: 20,

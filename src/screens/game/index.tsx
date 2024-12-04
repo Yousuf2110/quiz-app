@@ -1,16 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 const Game = () => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const {level} = route.params;
 
-  const [timer, setTimer] = useState(10); // 10 seconds timer
+  const [timer, setTimer] = useState(10);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isAnswered, setIsAnswered] = useState(false);
+  const [currentDifficulty, setCurrentDifficulty] = useState(level);
 
-  // 50 Questions Array
-  const questions = [
+  const easyQuestions = [
     {
       question: 'What is the capital of France?',
       options: ['Paris', 'Berlin', 'Madrid', 'Rome'],
@@ -21,62 +23,96 @@ const Game = () => {
       options: ['3', '4', '5', '6'],
       correctAnswer: '4',
     },
-    {
-      question: 'Who is the founder of Apple?',
-      options: ['Steve Jobs', 'Bill Gates', 'Mark Zuckerberg', 'Elon Musk'],
-      correctAnswer: 'Steve Jobs',
-    },
-    // 47 more questions go here...
   ];
 
-  // Timer Countdown Logic
+  const normalQuestions = [
+    {
+      question: 'What is the capital of Germany?',
+      options: ['Berlin', 'Madrid', 'Rome', 'Paris'],
+      correctAnswer: 'Berlin',
+    },
+    {
+      question: 'What is 5 * 3?',
+      options: ['15', '12', '10', '20'],
+      correctAnswer: '15',
+    },
+  ];
+
+  const hardQuestions = [
+    {
+      question: 'Who developed the theory of relativity?',
+      options: [
+        'Albert Einstein',
+        'Isaac Newton',
+        'Marie Curie',
+        'Nikola Tesla',
+      ],
+      correctAnswer: 'Albert Einstein',
+    },
+    {
+      question: 'What is the square root of 144?',
+      options: ['10', '11', '12', '13'],
+      correctAnswer: '12',
+    },
+  ];
+
+  const questionSets = {
+    easy: easyQuestions,
+    normal: normalQuestions,
+    hard: hardQuestions,
+  };
+
+  const questions = questionSets[currentDifficulty];
+
   useEffect(() => {
     if (timer > 0 && !isAnswered) {
       const interval = setInterval(() => {
         setTimer(prev => prev - 1);
       }, 1000);
-      return () => clearInterval(interval); // Cleanup interval on unmount
+      return () => clearInterval(interval);
     } else if (timer === 0) {
       handleNextQuestion();
     }
   }, [timer, isAnswered]);
 
-  // Handle Option Click
-  const handleOptionClick = option => {
+  const handleOptionClick = (option: string) => {
     setIsAnswered(true);
     if (option === questions[currentQuestionIndex].correctAnswer) {
       Alert.alert('Correct Answer!');
     } else {
       Alert.alert('Wrong Answer!');
-      // Navigate to Home Screen on wrong answer
-      setTimeout(() => navigation.navigate('Home'), 1000);
+      setTimeout(() => navigation.navigate('Home' as never), 1000);
     }
-    setTimeout(() => handleNextQuestion(), 1000); // Delay before moving to next question
+    setTimeout(() => handleNextQuestion(), 1000);
   };
 
-  // Handle Next Question
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
-      setTimer(10); // Reset Timer
+      setTimer(10);
+      setIsAnswered(false);
+    } else if (currentDifficulty === 'easy') {
+      setCurrentDifficulty('normal');
+      setCurrentQuestionIndex(0);
+      setTimer(10);
+      setIsAnswered(false);
+    } else if (currentDifficulty === 'normal') {
+      setCurrentDifficulty('hard');
+      setCurrentQuestionIndex(0);
+      setTimer(10);
       setIsAnswered(false);
     } else {
       Alert.alert('Quiz Completed!');
-      navigation.navigate('Home'); // Navigate to Home after quiz completion
+      navigation.navigate('Home' as never);
     }
   };
 
   return (
     <View style={styles.container}>
-      {/* Timer */}
       <Text style={styles.timerText}>Time Left: {timer} sec</Text>
-
-      {/* Question */}
       <Text style={styles.questionText}>
         {questions[currentQuestionIndex].question}
       </Text>
-
-      {/* Options */}
       <View style={styles.optionsContainer}>
         {questions[currentQuestionIndex].options.map((option, index) => (
           <TouchableOpacity
@@ -92,14 +128,11 @@ const Game = () => {
                 : null,
             ]}
             onPress={() => handleOptionClick(option)}
-            disabled={isAnswered} // Disable buttons after answering
-          >
+            disabled={isAnswered}>
             <Text style={styles.optionText}>{option}</Text>
           </TouchableOpacity>
         ))}
       </View>
-
-      {/* Next Question Button */}
       {isAnswered && (
         <TouchableOpacity
           style={styles.nextButton}
@@ -143,7 +176,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
     alignItems: 'center',
-    transition: 'background-color 0.3s ease',
   },
   optionText: {
     fontSize: 18,
