@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     backgroundColor: THEME.PRIMARY,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: wp(5),
   },
   innerContainer: {
     paddingHorizontal: wp(3),
@@ -21,7 +22,6 @@ export const styles = StyleSheet.create({
     color: THEME.WHITE,
     fontFamily: 'Poppins-Bold',
   },
-
   hardButton: {
     backgroundColor: 'green',
     borderRadius: 8,

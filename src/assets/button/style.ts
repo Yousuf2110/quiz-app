@@ -5,9 +5,10 @@ import {
 } from 'react-native-responsive-screen';
 import {THEME} from '../../constants/theme';
 import {RFPercentage} from 'react-native-responsive-fontsize';
+
 export const styles = StyleSheet.create({
   button: {
-    width: '80%',
+    width: '100%',
     height: hp(6.6),
     borderRadius: 10,
     justifyContent: 'center',
@@ -35,5 +36,13 @@ export const styles = StyleSheet.create({
     fontSize: RFPercentage(2.3),
     color: THEME.WHITE,
     fontFamily: 'Poppins-Bold',
+  },
+  disabledButton: {
+    backgroundColor: '#d3d3d3',
+    shadowColor: '#a9a9a9',
+    elevation: 0,
+  },
+  disabledText: {
+    color: '#a9a9a9',
   },
 });

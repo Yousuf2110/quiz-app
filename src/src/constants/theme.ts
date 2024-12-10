@@ -1,9 +1,0 @@
-export const THEME = {
-  PRIMARY: '#7144AC',
-  BLACK: '#000000',
-  BLUE: '#0000FF',
-  WHITE: '#FFFFFF',
-  BACKGROUND: '#1F1F2F',
-  RED: '#FF0000',
-  YELLOW: '#FFFF00',
-};

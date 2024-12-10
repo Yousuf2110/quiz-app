@@ -1,66 +1,87 @@
 import {StyleSheet} from 'react-native';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
 import {THEME} from '../../constants/theme';
-import {RFPercentage, RFValue} from 'react-native-responsive-fontsize';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: THEME.WHITE,
-    alignItems: 'center',
-  },
-  innerContainer: {
-    paddingHorizontal: wp(3),
-    alignItems: 'center',
-  },
-  footer: {
-    width: '80%',
-    marginBottom: 0,
-    bottom: 0,
-    alignSelf: 'flex-end',
-  },
-  timerSection: {
-    width: '100%',
-    paddingVertical: hp(3),
-    alignItems: 'center',
+    backgroundColor: THEME.PRIMARY,
+    paddingHorizontal: 20,
     justifyContent: 'center',
   },
-  questionSection: {
-    width: '100%',
-    paddingVertical: hp(3),
-  },
-  circle: {
-    borderRadius: 200 / 2,
-    height: 110,
-    width: 110,
-    borderWidth: 5,
-    alignItems: 'center',
+  backButton: {
+    position: 'absolute',
+    top: 15,
+    left: 15,
+    backgroundColor: '#FFF',
+    borderRadius: 20,
+    width: 40,
+    height: 40,
     justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 3,
   },
-  time: {
-    fontSize: RFPercentage(2.3),
-    color: THEME.BLACK,
-    fontFamily: 'Poppins-Bold',
+  backText: {
+    height: 30,
+    width: 30,
   },
-  optionsSection: {
-    width: '100%',
+  timer: {
+    borderColor: THEME.RED,
+    height: 100,
+    backgroundColor: '#3430b0',
+    width: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    borderRadius: 100 / 2,
+    borderWidth: 3,
+    borderStyle: 'dotted',
+    marginVertical: 10,
+  },
+  timerText: {
+    fontSize: 27,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  question: {
+    fontSize: 22,
+    color: '#FFF',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 30,
+  },
+  optionsContainer: {
+    marginBottom: 30,
+  },
+  optionButton: {
     borderWidth: 1,
-    marginVertical: hp(1),
-  },
-  optionContainer: {
-    width: '100%',
-    height: hp(6),
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
+    borderColor: '#DDD',
     borderRadius: 10,
+    padding: 15,
+    marginVertical: 10,
   },
-  option: {
-    fontSize: RFValue(20),
-    color: THEME.BLACK,
-    fontFamily: 'Poppins-Regular',
+  optionContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  optionCounter: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+    marginRight: 10,
+  },
+  optionText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#333',
+  },
+  selectedOptionText: {
+    color: '#FFF',
+  },
+  progress: {
+    fontSize: 18,
+    color: '#FFF',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 10,
   },
 });
