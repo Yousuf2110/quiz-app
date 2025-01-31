@@ -733,7 +733,7 @@ export const normalQuestions = [
   {
     id: 57,
     question: 'What is the capital of Canada?',
-    options: ['Ottawa', 'Toronto', 'Vancouver', 'Montreal'],
+    options: ['Toronto', 'Ottawa', 'Vancouver', 'Montreal'],
     correctAnswer: 'Ottawa',
   },
   {
@@ -803,7 +803,7 @@ export const normalQuestions = [
   {
     id: 67,
     question: 'What is the smallest bone in the human body?',
-    options: ['Stapes', 'Femur', 'Radius', 'Tibia'],
+    options: ['Radius', 'Femur', 'Stapes', 'Tibia'],
     correctAnswer: 'Stapes',
   },
   {
@@ -815,7 +815,7 @@ export const normalQuestions = [
   {
     id: 69,
     question: 'Which country is the largest producer of oil?',
-    options: ['USA', 'Russia', 'Saudi Arabia', 'China'],
+    options: ['China', 'Russia', 'Saudi Arabia', 'USA'],
     correctAnswer: 'USA',
   },
   {

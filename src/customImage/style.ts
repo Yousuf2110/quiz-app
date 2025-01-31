@@ -3,8 +3,8 @@ import {RFPercentage} from 'react-native-responsive-fontsize';
 
 export const styles = StyleSheet.create({
   image: {
-    width: '60%',
-    height: '60%',
+    width: '30%',
+    height: '30%',
     borderWidth: 2,
   },
 });

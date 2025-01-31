@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {View, Image, StatusBar} from 'react-native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {styles} from './styles';
 import {SCREEN} from '../../constants/screen';
-import {useNavigation} from '@react-navigation/native';
 import Button from '../../assets/button';
 import {THEME} from '../../constants/theme';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Home = () => {
   const navigation: any = useNavigation();
@@ -13,21 +13,23 @@ const Home = () => {
   const [easyCompleted, setEasyCompleted] = useState(false);
   const [normalCompleted, setNormalCompleted] = useState(false);
 
-  useEffect(() => {
-    const loadProgress = async () => {
-      try {
-        const easyStatus = await AsyncStorage.getItem('easyCompleted');
-        const normalStatus = await AsyncStorage.getItem('normalCompleted');
+  useFocusEffect(
+    useCallback(() => {
+      const loadProgress = async () => {
+        try {
+          const easyStatus = await AsyncStorage.getItem('easyCompleted');
+          const normalStatus = await AsyncStorage.getItem('normalCompleted');
 
-        setEasyCompleted(easyStatus === 'true');
-        setNormalCompleted(normalStatus === 'true');
-      } catch (error) {
-        console.error('Failed to load progress', error);
-      }
-    };
+          setEasyCompleted(easyStatus === 'true');
+          setNormalCompleted(normalStatus === 'true');
+        } catch (error) {
+          console.error('Failed to load progress', error);
+        }
+      };
 
-    loadProgress();
-  }, []);
+      loadProgress();
+    }, [])
+  );
 
   const handlePress = (level: string) => {
     navigation.navigate(SCREEN.GAME, {level});
@@ -46,18 +48,18 @@ const Home = () => {
         <Button
           title={'Easy'}
           onPress={() => handlePress('easy')}
-          disabled={false}
+          disabled={false} 
         />
         <Button
           title={'Normal'}
           onPress={() => handlePress('normal')}
-          disabled={!easyCompleted}
+          disabled={!easyCompleted} 
         />
         <Button
           title={'Hard'}
           onPress={() => handlePress('hard')}
-          disabled={!normalCompleted}
-        />
+          disabled={!normalCompleted} 
+                  />
       </View>
     </View>
   );
