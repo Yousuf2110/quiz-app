@@ -77,7 +77,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.quizPuzzle"
+    namespace "com.quizgame"
     defaultConfig {
         applicationId "com.quizPuzzle"
         minSdkVersion rootProject.ext.minSdkVersion
